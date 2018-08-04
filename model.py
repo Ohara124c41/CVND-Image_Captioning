@@ -54,7 +54,7 @@ class DecoderRNN(nn.Module):
         for i in range(max_len):
             outputs, states = self.lstm(inputs, states)
             outputs = self.linear(outputs.squeeze(1))
-            desired_items = output.max(1)[1]
+            desired_items = outputs.max(1)[1]
             incl.append(desired_items.item())
             inputs = self.embed(desired_items).unsqueeze(1)
             
